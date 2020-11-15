@@ -2,14 +2,14 @@ function congrats {
   echo "You are right!!! Count of files = $1."
 }
 
-count_of_files=$(ls | wc -l | egrep -o "[0-9]+")
+count_of_files=$(ls -l | egrep "^-" | wc -l | egrep -o "[0-9]+")
 has_success=false
 
 echo 'Please guess number of files in this directory:'
 
 while [[ ! $has_success = true ]]
 do
-  read guess_count
+  read -r guess_count
 
   if [[ $guess_count -lt $count_of_files ]]
   then
